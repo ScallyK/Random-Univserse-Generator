@@ -4,6 +4,8 @@ import java.util.List;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -14,18 +16,24 @@ public class Planet {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private final long id;
+    private Long id;
 
-    private final String name;
-    private final PlanetType planetType;
-    private final double diameter; // in kilometers
-    private final double mass; // in kilograms
+    private String name;
+
+    @Enumerated(EnumType.STRING)
+    private PlanetType planetType;
+
+    private double diameter; // in kilometers
+    private double mass; // in kilograms
     
     @OneToMany(cascade = CascadeType.ALL)
-    private final List<Moon> moons;
-    private final Boolean planetHasLife; // null if unknown
-    public Planet(long id, String name, PlanetType planetType, double diameter, double mass, List<Moon> moons, Boolean planetHasLife) {
-        this.id = id;
+    private List<Moon> moons;
+
+    private Boolean planetHasLife; // null if unknown
+
+    public Planet(){} // required by JPA
+    
+    public Planet(String name, PlanetType planetType, double diameter, double mass, List<Moon> moons, Boolean planetHasLife) {
         this.name = name;
         this.planetType = planetType;
         this.diameter = diameter;
@@ -34,7 +42,7 @@ public class Planet {
         this.planetHasLife = planetHasLife;
     }
     
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

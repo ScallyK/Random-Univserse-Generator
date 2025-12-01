@@ -14,24 +14,25 @@ public class SimpleGalaxy {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private final long id;
+    private Long id;
 
-    private final String name;
-    private final double age; // in billion years
-    private final String type;
+    private String name;
+    private double age; // in billion years
+    private String type;
 
     @OneToMany(cascade = CascadeType.ALL)
-    private final List<StarSystem> starSystems;
+    private List<StarSystem> starSystems;
 
-    public SimpleGalaxy(long id, String name, double age, String type, List<StarSystem> starSystems) {
-        this.id = id;
+    public SimpleGalaxy() {} // required by JPA
+
+    public SimpleGalaxy( String name, double age, String type, List<StarSystem> starSystems) {
         this.name = name;
         this.age = age;
         this.type = type;
         this.starSystems = starSystems;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

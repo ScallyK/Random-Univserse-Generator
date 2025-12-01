@@ -10,20 +10,21 @@ public class Moon {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private final long id;
+    private Long id;
 
-    private final String name;
-    private final double diameter; // in kilometers
-    private final double mass; // in kilograms
+    private String name;
+    private double diameter; // in kilometers
+    private double mass; // in kilograms
+
+    protected Moon() {} // required by JPA
     
-    public Moon(long id, String name, double diameter, double mass) {
-        this.id = id;
+    public Moon(String name, double diameter, double mass) {
         this.name = name;
         this.diameter = diameter;
         this.mass = mass;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
     

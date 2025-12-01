@@ -14,26 +14,27 @@ public class StarSystem {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private final long id;
+    private Long id;
 
-    private final String name;
-    private final double age; // in billion years
-
-    @OneToMany(cascade = CascadeType.ALL)
-    private final List<Star> stars;
+    private String name;
+    private double age; // in billion years
 
     @OneToMany(cascade = CascadeType.ALL)
-    private final List<Planet> planets;
+    private List<Star> stars;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Planet> planets;
     
-    public StarSystem(long id, String name, double age, List<Star> stars, List<Planet> planets) {
-        this.id = id;
+    public StarSystem() {} // required by JPA
+
+    public StarSystem(String name, double age, List<Star> stars, List<Planet> planets) {
         this.name = name;
         this.age = age;
         this.stars = stars;
         this.planets = planets;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

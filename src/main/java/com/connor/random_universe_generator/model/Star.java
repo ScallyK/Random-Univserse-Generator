@@ -1,31 +1,38 @@
 package com.connor.random_universe_generator.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+
 
 @Entity
 public class Star {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private final long id;
+    private Long id;
 
-    private final String name;
-    private final StarType starType;
-    private final double mass; // in kilograms
-    private final double diameter; // in kilometers
+    private String name;
+
+    @Enumerated(EnumType.STRING)
+    private StarType starType;
     
-    public Star(long id, String name, StarType starType, double mass, double diameter) {
-        this.id = id;
+    private double mass; // in kilograms
+    private double diameter; // in kilometers
+
+    public Star() {} // required by JPA
+    
+    public Star(String name, StarType starType, double mass, double diameter) {
         this.name = name;
         this.starType = starType;
         this.mass = mass;
         this.diameter = diameter;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

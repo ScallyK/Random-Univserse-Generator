@@ -3,74 +3,134 @@ package com.connor.random_universe_generator.service;
 import java.util.List;
 import java.util.Random;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.connor.random_universe_generator.model.Moon;
 import com.connor.random_universe_generator.model.Planet;
 import com.connor.random_universe_generator.model.PlanetType;
 import com.connor.random_universe_generator.model.SimpleGalaxy;
+import com.connor.random_universe_generator.model.SimpleUniverse;
 import com.connor.random_universe_generator.model.Star;
 import com.connor.random_universe_generator.model.StarSystem;
 import com.connor.random_universe_generator.model.StarType;
+import com.connor.random_universe_generator.repository.GalaxyRepository;
+import com.connor.random_universe_generator.repository.MoonRepository;
+import com.connor.random_universe_generator.repository.PlanetRepository;
+import com.connor.random_universe_generator.repository.StarRepository;
+import com.connor.random_universe_generator.repository.StarSystemRepository;
+import com.connor.random_universe_generator.repository.UniverseRepository;
 
 @Service
 public class UniverseService {
 
+    // Random number generator
     private final Random random = new Random();
 
+    // Inject repositories for database operations
+    private final UniverseRepository universeRepository;
+    private final GalaxyRepository galaxyRepository;
+    private final StarSystemRepository starSystemRepository;
+    private final StarRepository starRepository;
+    private final PlanetRepository planetRepository;
+    private final MoonRepository moonRepository;
+
+    // Constructor-based dependency injection
+    @Autowired
+    public UniverseService(UniverseRepository universeRepository, GalaxyRepository galaxyRepository, StarSystemRepository starSystemRepository, StarRepository starRepository, PlanetRepository planetRepository, MoonRepository moonRepository) {
+        this.universeRepository = universeRepository;
+        this.galaxyRepository = galaxyRepository;
+        this.starSystemRepository = starSystemRepository;
+        this.starRepository = starRepository;
+        this.planetRepository = planetRepository;
+        this.moonRepository = moonRepository;
+    }
+
+    // Generates a random universe
+    public SimpleUniverse generateUniverse(boolean saveToDatabase) {
+
+        // if saveToDatabase is set to true, all child entities will also be saved
+        List<SimpleGalaxy> galaxies = java.util.stream.IntStream.range(0, 1 + random.nextInt(10))
+                .mapToObj(i -> generateGalaxy(saveToDatabase))
+                .collect(java.util.stream.Collectors.toList());
+
+        var universe = new SimpleUniverse(galaxies);
+
+        if (saveToDatabase) {
+            universe = universeRepository.save(universe);
+        }
+
+        return universe;
+    }
+
     // Generates a random single galaxy
-    public SimpleGalaxy generateGalaxy() {
+    public SimpleGalaxy generateGalaxy(boolean saveToDatabase) {
 
         String[] galaxyTypes = {"Spiral", "Elliptical", "Irregular", "Barred Spiral", "Peculiar", "Lenticular"};
-
-        long id = random.nextLong();
         String galaxyName = "Galaxy-" + random.nextInt(1000000); // Change to choose from list
         double age = 1 + random.nextDouble() * 13; // in billion years
         String type = galaxyTypes[random.nextInt(galaxyTypes.length)];
 
         // Generates between 1 and 1000 star systems
         List<StarSystem> starSystems = java.util.stream.IntStream.range(0, 1 + random.nextInt(1000))
-                .mapToObj(i -> generateStarSystem())
+                .mapToObj(i -> generateStarSystem(saveToDatabase))
                 .collect(java.util.stream.Collectors.toList());
 
-        return new SimpleGalaxy(id, galaxyName, age, type, starSystems);
+        SimpleGalaxy galaxy = new SimpleGalaxy(galaxyName, age, type, starSystems);
+
+        if (saveToDatabase) {
+            galaxy = galaxyRepository.save(galaxy);
+        }
+
+        return galaxy;
     }
 
     // Generates a random single solar system
-    public StarSystem generateStarSystem() {
+    public StarSystem generateStarSystem(boolean saveToDatabase) {
 
-        long id = random.nextLong();
         String starSystemName = "Star System-" + random.nextInt(1000000); // Change to choose from list
         double age = 1 + random.nextDouble() * 13; // in billion years
 
         // Generates between 1 and 7 stars
         List<Star> stars = java.util.stream.IntStream.range(0, 1 + random.nextInt(7))
-                .mapToObj(i -> generateStar())
+                .mapToObj(i -> generateStar(saveToDatabase))
                 .collect(java.util.stream.Collectors.toList());
 
         // Generates between 1 and 12 planets
         int planetCount = 1 + random.nextInt(12);
         List<Planet> planets = java.util.stream.IntStream.range(0, planetCount)
-                .mapToObj(i -> generatePlanet())
+                .mapToObj(i -> generatePlanet(saveToDatabase))
                 .collect(java.util.stream.Collectors.toList());
 
-        return new StarSystem(id, starSystemName, age, stars, planets);
+        StarSystem starSystem = new StarSystem(starSystemName, age, stars, planets);
+
+        if (saveToDatabase) {
+            starSystem = starSystemRepository.save(starSystem);
+        }
+
+        return starSystem;
     }
 
     // Generates a random single star
-    public Star generateStar() {
-        long id = random.nextLong();
+    public Star generateStar(boolean saveToDatabase) {
+        
         String starName = "Star-" + random.nextInt(10000); // Change to choose from list
         StarType starType = StarType.values()[random.nextInt(StarType.values().length)];
         double mass = 1e29 + random.nextDouble() * 1e32; // in kilograms
         double diameter = 100000 + random.nextDouble() * 2000000; // in kilometers
 
-        return new Star(id, starName, starType, mass, diameter);
+        Star star = new Star(starName, starType, mass, diameter);
+
+        if (saveToDatabase) {
+            star = starRepository.save(star);
+        }
+
+        return star;
     }
 
     // Generates a random single planet
-    public Planet generatePlanet() {
-        long id = random.nextLong();
+    public Planet generatePlanet(boolean saveToDatabase) {
+
         String planetName = "Planet-" + random.nextInt(10000); // Change to choose from list
         PlanetType planetType = PlanetType.values()[random.nextInt(PlanetType.values().length)];
         double diameter = 1000 + random.nextDouble() * 100000; // in kilometers
@@ -78,21 +138,33 @@ public class UniverseService {
 
         // Generates between 0 and 5 moons
         List<Moon> moons = java.util.stream.IntStream.range(0, random.nextInt(6))
-                .mapToObj(i -> generateMoon())
+                .mapToObj(i -> generateMoon(saveToDatabase))
                 .collect(java.util.stream.Collectors.toList());
         Boolean hasLife = random.nextBoolean(); // change to also be null sometimes
 
-        return new Planet(id, planetName, planetType, diameter, mass, moons, hasLife);
+        Planet planet = new Planet(planetName, planetType, diameter, mass, moons, hasLife);
+
+        if (saveToDatabase) {
+            planet = planetRepository.save(planet);
+        }
+
+        return planet;
     }
 
     // Generates a random single moon
-    public Moon generateMoon() {
-        long id = random.nextLong();
+    public Moon generateMoon(boolean saveToDatabase) {
+
         String moonName = "Moon-" + random.nextInt(10000);
         double diameter = 10 + random.nextDouble() * 5000; // in kilometers
         double mass = 1e15 + random.nextDouble() * 1e22;
 
-        return new Moon(id, moonName, diameter, mass);
+        Moon moon = new Moon(moonName, diameter, mass);
+
+        if (saveToDatabase) {
+            moon = moonRepository.save(moon);
+        }
+
+        return moon;
     }
 
 }
