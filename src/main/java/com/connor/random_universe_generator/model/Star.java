@@ -22,14 +22,16 @@ public class Star {
     
     private double mass; // in kilograms
     private double diameter; // in kilometers
+    private double temperature; // in Kelvin
 
     public Star() {} // required by JPA
     
-    public Star(String name, StarType starType, double mass, double diameter) {
+    public Star(String name, StarType starType, double mass, double diameter, double temperature) {
         this.name = name;
         this.starType = starType;
         this.mass = mass;
         this.diameter = diameter;
+        this.temperature = temperature;
     }
 
     public Long getId() {
@@ -50,5 +52,9 @@ public class Star {
 
     public double getDiameter() {
         return diameter;
+    }
+
+    public double getTemperature() {
+        return temperature;
     }
 }

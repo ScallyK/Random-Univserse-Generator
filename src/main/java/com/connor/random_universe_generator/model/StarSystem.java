@@ -42,6 +42,10 @@ public class StarSystem {
         return name;
     }
 
+    public double getAge() {
+        return age;
+    }
+
     public List<Star> getStars() {
         return stars;
     }
@@ -49,9 +53,4 @@ public class StarSystem {
     public List<Planet> getPlanets() {
         return planets;
     }
-
-    public double getAge() {
-        return age;
-    }
-
 }

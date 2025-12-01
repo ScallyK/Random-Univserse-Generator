@@ -96,8 +96,8 @@ public class UniverseService {
                 .mapToObj(i -> generateStar(saveToDatabase))
                 .collect(java.util.stream.Collectors.toList());
 
-        // Generates between 1 and 12 planets
-        int planetCount = 1 + random.nextInt(12);
+        // Generates between 0 and 12 planets
+        int planetCount = 0 + random.nextInt(12);
         List<Planet> planets = java.util.stream.IntStream.range(0, planetCount)
                 .mapToObj(i -> generatePlanet(saveToDatabase))
                 .collect(java.util.stream.Collectors.toList());
@@ -118,8 +118,9 @@ public class UniverseService {
         StarType starType = StarType.values()[random.nextInt(StarType.values().length)];
         double mass = 1e29 + random.nextDouble() * 1e32; // in kilograms
         double diameter = 100000 + random.nextDouble() * 2000000; // in kilometers
+        double temperature = 2000 + random.nextDouble() * 30000; // in Kelvin
 
-        Star star = new Star(starName, starType, mass, diameter);
+        Star star = new Star(starName, starType, mass, diameter, temperature);
 
         if (saveToDatabase) {
             star = starRepository.save(star);
