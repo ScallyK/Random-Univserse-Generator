@@ -38,19 +38,39 @@ public class StarSystem {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public double getAge() {
         return age;
     }
 
+    public void setAge(double age) {
+        this.age = age;
+    }
+
     public List<Star> getStars() {
         return stars;
     }
 
+    public void setStars(List<Star> stars) {
+        this.stars = stars;
+    }
+
     public List<Planet> getPlanets() {
         return planets;
+    }
+
+    public void setPlanets(List<Planet> planets) {
+        this.planets = planets;
     }
 }

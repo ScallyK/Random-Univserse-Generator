@@ -8,7 +8,7 @@ public class RandomUniverseGeneratorApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(RandomUniverseGeneratorApplication.class, args);
-		System.out.println("Random Universe Generator Application started successfully.");
+		System.out.println("Random Universe Generator started successfully.");
 	}
 
 }

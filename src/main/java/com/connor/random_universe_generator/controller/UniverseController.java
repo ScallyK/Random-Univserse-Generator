@@ -53,8 +53,8 @@ public class UniverseController {
 
     // Endpoint for generating a full random universe
     @GetMapping("/universe/random")
-    public SimpleUniverse generateUniverse(@RequestParam(name = "saveToDatabase", defaultValue = "false") boolean saveToDatabase) {
-        return universeService.generateUniverse(saveToDatabase);
+    public SimpleUniverse generateUniverse(@RequestParam(name = "saveToDatabase", defaultValue = "false") boolean saveToDatabase, @RequestParam(name = "saveToFile", defaultValue = "false") boolean saveToFile) {
+        return universeService.generateUniverse(saveToDatabase, saveToFile);
     }
 
     // Endpoint for retrieving a universe by ID. If an id is not provided, defaults to 1
@@ -66,8 +66,8 @@ public class UniverseController {
 
     // Endpoint for generating a single random simple galaxy (< 1000 star systems)
     @GetMapping("/galaxy/random")
-    public SimpleGalaxy generateGalaxy(@RequestParam(name = "saveToDatabase", defaultValue = "false") boolean saveToDatabase) {
-        return universeService.generateGalaxy(saveToDatabase);
+    public SimpleGalaxy generateGalaxy() {
+        return universeService.generateGalaxy();
     }
 
     // Endpoint for retrieving a galaxy by ID. If an id is not provided, defaults to 1
@@ -79,8 +79,8 @@ public class UniverseController {
 
     // Endpoint for generating a single random star system
     @GetMapping("/star_system/random")
-    public StarSystem generateStarSystem(@RequestParam(name = "saveToDatabase", defaultValue = "false") boolean saveToDatabase) {
-        return universeService.generateStarSystem(saveToDatabase);
+    public StarSystem generateStarSystem() {
+        return universeService.generateStarSystem();
     }
 
     // Endpoint for retrieving a star system by ID. If an id is not provided, defaults to 1
@@ -92,8 +92,8 @@ public class UniverseController {
 
     // Endpoint for generating a single random star
     @GetMapping("/star/random")
-    public Star generateStar(@RequestParam(name = "saveToDatabase", defaultValue = "false") boolean saveToDatabase) {
-        return universeService.generateStar(saveToDatabase);
+    public Star generateStar() {
+        return universeService.generateStar();
     }
 
     // Endpoint for retrieving a star by ID. If an id is not provided, defaults to 1
@@ -105,8 +105,8 @@ public class UniverseController {
 
     // Endpoint for generating a single random planet
     @GetMapping("/planet/random")
-    public Planet generatePlanet(@RequestParam(name = "saveToDatabase", defaultValue = "false") boolean saveToDatabase) {
-        return universeService.generatePlanet(saveToDatabase);
+    public Planet generatePlanet() {
+        return universeService.generatePlanet();
     }
 
     // Endpoint for retrieving a planet by ID. If an id is not provided, defaults to 1
@@ -118,8 +118,8 @@ public class UniverseController {
 
     // Endpoint for generating a single random moon
     @GetMapping("/moon/random")
-    public Moon generateMoon(@RequestParam(name = "saveToDatabase", defaultValue = "false") boolean saveToDatabase) {
-        return universeService.generateMoon(saveToDatabase);
+    public Moon generateMoon() {
+        return universeService.generateMoon();
     }
 
     // Endpoint for retrieving a moon by ID. If an id is not provided, defaults to 1

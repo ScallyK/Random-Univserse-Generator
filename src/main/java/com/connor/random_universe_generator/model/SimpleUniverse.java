@@ -29,7 +29,15 @@ public class SimpleUniverse {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public List<SimpleGalaxy> getGalaxies() {
         return galaxies;
+    }
+
+    public void setGalaxies(List<SimpleGalaxy> galaxies) {
+        this.galaxies = galaxies;
     }
 }

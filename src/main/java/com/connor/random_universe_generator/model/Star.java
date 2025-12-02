@@ -38,23 +38,47 @@ public class Star {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public StarType getStarType() {
         return starType;
     }
 
+    public void setStarType(StarType starType) {
+        this.starType = starType;
+    }
+
     public double getMass() {
         return mass;
+    }
+
+    public void setMass(double mass) {
+        this.mass = mass;
     }
 
     public double getDiameter() {
         return diameter;
     }
 
+    public void setDiameter(double diameter) {
+        this.diameter = diameter;
+    }
+    
     public double getTemperature() {
         return temperature;
+    }
+
+    public void setTemperature(double temperature) {
+        this.temperature = temperature;
     }
 }

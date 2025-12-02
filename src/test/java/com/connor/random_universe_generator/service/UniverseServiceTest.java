@@ -21,7 +21,7 @@ public class UniverseServiceTest {
 
     @Test
     public void testGenerateUniverse() {
-        SimpleUniverse universe = universeService.generateUniverse(false);
+        SimpleUniverse universe = universeService.generateUniverse(false, false);
         assertNotNull(universe);
         assertNotNull(universe.getGalaxies());
         assertTrue(!universe.getGalaxies().isEmpty());
@@ -43,7 +43,7 @@ public class UniverseServiceTest {
 
     @Test
     public void testGenerateGalaxy() {
-        SimpleGalaxy galaxy = universeService.generateGalaxy(false);
+        SimpleGalaxy galaxy = universeService.generateGalaxy();
         assertNotNull(galaxy);
         assertNotNull(galaxy.getName());
         assertNotNull(galaxy.getAge());
@@ -55,7 +55,7 @@ public class UniverseServiceTest {
 
     @Test
     public void testGenerateStarSystem() {
-        StarSystem starSystem = universeService.generateStarSystem(false);
+        StarSystem starSystem = universeService.generateStarSystem();
         assertNotNull(starSystem);
         assertNotNull(starSystem.getName());
         assertNotNull(starSystem.getStars());
@@ -68,7 +68,7 @@ public class UniverseServiceTest {
 
     @Test
     public void testGenerateStar() {
-        Star star = universeService.generateStar(false);
+        Star star = universeService.generateStar();
         assertNotNull(star);
         assertNotNull(star.getName());
         assertNotNull(star.getStarType());
@@ -79,7 +79,7 @@ public class UniverseServiceTest {
 
     @Test
     public void testGeneratePlanet() {
-        Planet planet = universeService.generatePlanet(false);
+        Planet planet = universeService.generatePlanet();
         assertNotNull(planet);
         assertNotNull(planet.getName());
         assertNotNull(planet.getPlanetType());
@@ -91,7 +91,7 @@ public class UniverseServiceTest {
 
     @Test
     public void testGenerateMoon() {
-        Moon moon = universeService.generateMoon(false);
+        Moon moon = universeService.generateMoon();
         assertNotNull(moon);
         assertNotNull(moon.getName());
         assertTrue(moon.getDiameter() > 0);

@@ -46,28 +46,55 @@ public class Planet {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public PlanetType getPlanetType() {
         return planetType;
     }
 
+    public void setPlanetType(PlanetType planetType) {
+        this.planetType = planetType;
+    }
+
     public double getDiameter() {
         return diameter;
+    }
+
+    public void setDiameter(double diameter) {
+        this.diameter = diameter;
     }
 
     public double getMass() {
         return mass;
     }
 
+    public void setMass(double mass) {
+        this.mass = mass;
+    }
+
     public List<Moon> getMoons() {
         return moons;
+    }
+
+    public void setMoons(List<Moon> moons) {
+        this.moons = moons;
     }
 
     public Boolean getPlanetHasLife() {
         return planetHasLife;
     }
 
+    public void setPlanetHasLife(Boolean planetHasLife) {
+        this.planetHasLife = planetHasLife;
+    }
 }
