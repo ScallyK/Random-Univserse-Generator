@@ -31,15 +31,19 @@ public class Planet {
 
     private Boolean planetHasLife; // null if unknown
 
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Lifeform> lifeforms;
+
     public Planet(){} // required by JPA
     
-    public Planet(String name, PlanetType planetType, double diameter, double mass, List<Moon> moons, Boolean planetHasLife) {
+    public Planet(String name, PlanetType planetType, double diameter, double mass, List<Moon> moons, Boolean planetHasLife, List<Lifeform> lifeforms) {
         this.name = name;
         this.planetType = planetType;
         this.diameter = diameter;
         this.mass = mass;
         this.moons = moons;
         this.planetHasLife = planetHasLife;
+        this.lifeforms = lifeforms;
     }
     
     public Long getId() {
@@ -96,5 +100,13 @@ public class Planet {
 
     public void setPlanetHasLife(Boolean planetHasLife) {
         this.planetHasLife = planetHasLife;
+    }
+
+    public List<Lifeform> getLifeforms() {
+        return lifeforms;
+    }
+
+    public void setLifeforms(List<Lifeform> lifeforms) {
+        this.lifeforms = lifeforms;
     }
 }

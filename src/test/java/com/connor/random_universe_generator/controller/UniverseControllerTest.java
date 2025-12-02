@@ -100,7 +100,7 @@ public class UniverseControllerTest {
 
     @Test
     public void testGenerateRandomPlanet() throws Exception {
-        Planet planet = new Planet("TestPlanet", PlanetType.TERRESTRIAL, 1000, 1e20, null, false);
+        Planet planet = new Planet("TestPlanet", PlanetType.TERRESTRIAL, 1000, 1e20, null, false, null);
         planet.setId(1L);
 
         Mockito.when(universeService.generatePlanet()).thenReturn(planet);

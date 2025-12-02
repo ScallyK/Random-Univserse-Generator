@@ -1,5 +1,6 @@
 /Users/connorscally/Documents/GitHub/Random-Univserse-Generator/src/main/java/com/connor/random_universe_generator/RandomUniverseGeneratorApplication.java
 /Users/connorscally/Documents/GitHub/Random-Univserse-Generator/src/main/java/com/connor/random_universe_generator/controller/UniverseController.java
+/Users/connorscally/Documents/GitHub/Random-Univserse-Generator/src/main/java/com/connor/random_universe_generator/model/Lifeform.java
 /Users/connorscally/Documents/GitHub/Random-Univserse-Generator/src/main/java/com/connor/random_universe_generator/model/Moon.java
 /Users/connorscally/Documents/GitHub/Random-Univserse-Generator/src/main/java/com/connor/random_universe_generator/model/Planet.java
 /Users/connorscally/Documents/GitHub/Random-Univserse-Generator/src/main/java/com/connor/random_universe_generator/model/PlanetType.java
@@ -16,3 +17,4 @@
 /Users/connorscally/Documents/GitHub/Random-Univserse-Generator/src/main/java/com/connor/random_universe_generator/repository/UniverseRepository.java
 /Users/connorscally/Documents/GitHub/Random-Univserse-Generator/src/main/java/com/connor/random_universe_generator/service/UniverseService.java
 /Users/connorscally/Documents/GitHub/Random-Univserse-Generator/src/main/java/com/connor/random_universe_generator/util/JsonFileUtil.java
+/Users/connorscally/Documents/GitHub/Random-Univserse-Generator/src/main/java/com/connor/random_universe_generator/util/RandomNameGenerator.java
