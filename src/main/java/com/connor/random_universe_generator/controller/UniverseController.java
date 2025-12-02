@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.connor.random_universe_generator.model.Lifeform;
 import com.connor.random_universe_generator.model.Moon;
 import com.connor.random_universe_generator.model.Planet;
 import com.connor.random_universe_generator.model.SimpleGalaxy;
@@ -11,6 +12,7 @@ import com.connor.random_universe_generator.model.SimpleUniverse;
 import com.connor.random_universe_generator.model.Star;
 import com.connor.random_universe_generator.model.StarSystem;
 import com.connor.random_universe_generator.repository.GalaxyRepository;
+import com.connor.random_universe_generator.repository.LifeformRepository;
 import com.connor.random_universe_generator.repository.MoonRepository;
 import com.connor.random_universe_generator.repository.PlanetRepository;
 import com.connor.random_universe_generator.repository.StarRepository;
@@ -28,8 +30,9 @@ public class UniverseController {
     private final StarRepository starRepository;
     private final PlanetRepository planetRepository;
     private final MoonRepository moonRepository;
+    private final LifeformRepository lifeformRepository;
 
-    public UniverseController(UniverseService universeService, UniverseRepository universeRepository, GalaxyRepository galaxyRepository, StarSystemRepository starSystemRepository, StarRepository starRepository, PlanetRepository planetRepository, MoonRepository moonRepository) {
+    public UniverseController(UniverseService universeService, UniverseRepository universeRepository, GalaxyRepository galaxyRepository, StarSystemRepository starSystemRepository, StarRepository starRepository, PlanetRepository planetRepository, MoonRepository moonRepository, LifeformRepository lifeformRepository) {
         this.universeService = universeService;
         this.universeRepository = universeRepository;
         this.galaxyRepository = galaxyRepository;
@@ -37,6 +40,7 @@ public class UniverseController {
         this.starRepository = starRepository;
         this.planetRepository = planetRepository;
         this.moonRepository = moonRepository;
+        this.lifeformRepository = lifeformRepository;
     }
 
     // Basic health check endpoint
@@ -127,6 +131,18 @@ public class UniverseController {
     public Moon getMoon(@RequestParam(name = "id", required = false, defaultValue = "1") long id) {
         return moonRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Moon not found"));
+    }
+
+    @GetMapping("/lifeform/random")
+    public Lifeform generateLifeform() {
+        return universeService.generateLifeform();
+    }
+
+    // Endpoint for retrieving a lifeform by ID. If an id is not provided, defaults to 1
+    @GetMapping("/lifeform/fetch")
+    public Lifeform getLifeform(@RequestParam(name = "id", required = false, defaultValue = "1") long id) {
+        return lifeformRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Lifeform not found"));
     }
 
 }

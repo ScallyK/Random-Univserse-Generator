@@ -157,7 +157,7 @@ public class UniverseService {
         String[] reproductionMethods = {"sexual", "asexual", "budding", "spore-based", "binary fission"};
 
         String name = RandomNameGenerator.generateLifeformName();
-        int lifespan = 1 + random.nextInt(1000); // in years
+        int lifespan = 1 + random.nextInt(100); // in years
         boolean intelligent = random.nextBoolean();
         double averageHeight = 0.5 + random.nextDouble() * 3.0; // in meters
         double averageWeight = 5.0 + random.nextDouble() * 500.0; // in kilograms
