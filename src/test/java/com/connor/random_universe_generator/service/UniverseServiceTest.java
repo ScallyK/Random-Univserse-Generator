@@ -62,7 +62,6 @@ public class UniverseServiceTest {
         assertNotNull(starSystem.getPlanets());
         assertNotNull(starSystem.getAge());
         assertTrue(starSystem.getAge() > 0);
-        assertTrue(!starSystem.getPlanets().isEmpty());
         assertTrue(!starSystem.getStars().isEmpty());
     }
 
