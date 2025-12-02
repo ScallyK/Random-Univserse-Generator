@@ -94,7 +94,12 @@ public class UniverseService {
                 .mapToObj(i -> generatePlanet())
                 .collect(java.util.stream.Collectors.toList());
 
-        StarSystem starSystem = new StarSystem(starSystemName, age, stars, planets);
+        boolean hasComets = random.nextBoolean();
+        boolean hasAsteroids = random.nextBoolean();
+        boolean hasNebulae = random.nextBoolean();
+        boolean hasBlackHoles = random.nextBoolean();
+
+        StarSystem starSystem = new StarSystem(starSystemName, age, stars, planets, hasComets, hasAsteroids, hasNebulae, hasBlackHoles);
 
         return starSystem;
     }
@@ -107,8 +112,12 @@ public class UniverseService {
         double mass = 1e29 + random.nextDouble() * 1e32; // in kilograms
         double diameter = 100000 + random.nextDouble() * 2000000; // in kilometers
         double temperature = 2000 + random.nextDouble() * 30000; // in Kelvin
+        double luminosity = 1e24 + random.nextDouble() * 1e28; // in Watts
+        double radius = diameter / 2; // in kilometers
+        double age = 0.1 + random.nextDouble() * 10; // in billion years
+        double metallacity = random.nextDouble(); // proportion of elements heavier than helium
 
-        Star star = new Star(starName, starType, mass, diameter, temperature);
+        Star star = new Star(starName, starType, mass, diameter, temperature, luminosity, radius, age, metallacity);
 
         return star;
     }
@@ -126,12 +135,25 @@ public class UniverseService {
                 .mapToObj(i -> generateMoon())
                 .collect(java.util.stream.Collectors.toList());
         Boolean hasLife = random.nextBoolean(); // change to also be null sometimes
+        Boolean hasRings = random.nextBoolean();
+        double gravity = 0.1 + random.nextDouble() * 25; // in m/s^2
+        double orbitalPeriod = 10 + random.nextDouble() * 10000; // in days
+        double rotationalPeriod = 1 + random.nextDouble() * 1000; // in hours
+        double surfaceTemperature = 50 + random.nextDouble() * 1000;
+        Boolean hasWater = random.nextBoolean();
+        Boolean hasAtmosphere = random.nextBoolean();
+        String color = RandomNameGenerator.randomHexColorGenerator();
+        double averagePressure = 0.1 + random.nextDouble() * 100; // in kPa
+        double axialTilt = random.nextDouble() * 90; // in degrees
+        double distanceFromStar = 50 + random.nextDouble() * 5000; // in million kilometers
+        double escapeVelocity = 1 + random.nextDouble() * 60;
 
         // Generates between 0 and 10 lifeforms if the planet has life
-        Planet planet = new Planet(planetName, planetType, diameter, mass, moons, hasLife,
-                hasLife ? java.util.stream.IntStream.range(0, 1 + random.nextInt(10))
-                                .mapToObj(i -> generateLifeform())
-                                .collect(java.util.stream.Collectors.toList()) : null);
+        List<Lifeform> lifeforms = hasLife ? java.util.stream.IntStream.range(0, 1 + random.nextInt(10))
+            .mapToObj(i -> generateLifeform())
+            .collect(java.util.stream.Collectors.toList()) : null;
+
+        Planet planet = new Planet(planetName, planetType, diameter, mass, moons, hasLife, lifeforms, gravity, orbitalPeriod, rotationalPeriod, surfaceTemperature, hasAtmosphere, hasWater, color, averagePressure, axialTilt, distanceFromStar, hasRings, escapeVelocity);
 
         return planet;
     }
@@ -142,8 +164,16 @@ public class UniverseService {
         String moonName = RandomNameGenerator.generateMoonName();
         double diameter = 10 + random.nextDouble() * 5000; // in kilometers
         double mass = 1e15 + random.nextDouble() * 1e22;
+        double gravity = 0.1 + random.nextDouble() * 1.5; // in m/s^2
+        int orbitalPeriod = 1 + random.nextInt(1000); // in days
+        int rotationalPeriod = 1 + random.nextInt(1000); // in hours
+        double surfaceTemperature = 50 + random.nextDouble() * 300; // in Kelvin
+        boolean hasAtmosphere = random.nextBoolean();
+        boolean isTidallyLocked = random.nextBoolean();
+        boolean hasWater = random.nextBoolean();
+        String color = RandomNameGenerator.randomHexColorGenerator();
 
-        Moon moon = new Moon(moonName, diameter, mass);
+        Moon moon = new Moon(moonName, diameter, mass, gravity, orbitalPeriod, rotationalPeriod, surfaceTemperature, hasAtmosphere, isTidallyLocked, hasWater, color);
 
         return moon;
     }

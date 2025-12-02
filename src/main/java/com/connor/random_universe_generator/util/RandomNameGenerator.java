@@ -72,4 +72,14 @@ public class RandomNameGenerator {
         return name.substring(0, 1).toUpperCase() + name.substring(1);
     }
 
+    // Generates a random hex color code
+    public static String randomHexColorGenerator(){
+        String letters = "0123456789ABCDEF";
+        String color = "#";
+        for (int i = 0; i < 6; i++) {
+            color += letters.charAt((int) Math.floor(Math.random() * 16));
+        }
+        return color;
+    }
+
 }

@@ -24,14 +24,23 @@ public class StarSystem {
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<Planet> planets;
+
+    private boolean hasComets;
+    private boolean hasAsteroids;
+    private boolean hasNebulae;
+    private boolean hasBlackHoles;
     
     public StarSystem() {} // required by JPA
 
-    public StarSystem(String name, double age, List<Star> stars, List<Planet> planets) {
+    public StarSystem(String name, double age, List<Star> stars, List<Planet> planets, boolean hasComets, boolean hasAsteroids, boolean hasNebulae, boolean hasBlackHoles) {
         this.name = name;
         this.age = age;
         this.stars = stars;
         this.planets = planets;
+        this.hasComets = hasComets;
+        this.hasAsteroids = hasAsteroids;
+        this.hasNebulae = hasNebulae;
+        this.hasBlackHoles = hasBlackHoles;
     }
 
     public Long getId() {
@@ -72,5 +81,37 @@ public class StarSystem {
 
     public void setPlanets(List<Planet> planets) {
         this.planets = planets;
+    }
+
+    public boolean getHasComets() {
+        return hasComets;
+    }
+
+    public void setHasComets(boolean hasComets) {
+        this.hasComets = hasComets;
+    }
+
+    public boolean getHasAsteroids() {
+        return hasAsteroids;
+    }
+
+    public void setHasAsteroids(boolean hasAsteroids) {
+        this.hasAsteroids = hasAsteroids;
+    }
+
+    public boolean getHasNebulae() {
+        return hasNebulae;
+    }
+
+    public void setHasNebulae(boolean hasNebulae) {
+        this.hasNebulae = hasNebulae;
+    }
+
+    public boolean getHasBlackHoles() {
+        return hasBlackHoles;
+    }
+
+    public void setHasBlackHoles(boolean hasBlackHoles) {
+        this.hasBlackHoles = hasBlackHoles;
     }
 }

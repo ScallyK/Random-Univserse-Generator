@@ -53,4 +53,12 @@ public class RandomNameGeneratorTest {
         assertTrue(Character.isUpperCase(name.codePointAt(0)));
     }
 
+    @Test
+    public void testRandomHexColorGenerator() {
+        String color = RandomNameGenerator.randomHexColorGenerator();
+        assertNotNull(color);
+        assertTrue(color.matches("^#([A-Fa-f0-9]{6})$"));
+    }
+
+
 }
