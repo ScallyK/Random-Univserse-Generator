@@ -51,7 +51,7 @@ public class UniverseController {
         return "Universe Service is up and running!";
     }
 
-    // Main enddpoint for universe service
+    // Main endpoint for universe service
     @GetMapping("/universe")
     public String Universe() {
         return "Welcome to the Random Universe Generator!";
