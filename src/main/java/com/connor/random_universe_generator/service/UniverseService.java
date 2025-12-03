@@ -42,6 +42,7 @@ public class UniverseService {
     // Generates a random universe
     public SimpleUniverse generateUniverse(boolean saveToDatabase, boolean saveToFile) {
 
+        // Generates between 1 and 10 galaxies
         List<SimpleGalaxy> galaxies = java.util.stream.IntStream.range(0, 1 + random.nextInt(10))
                 .mapToObj(i -> generateGalaxy())
                 .collect(java.util.stream.Collectors.toList());

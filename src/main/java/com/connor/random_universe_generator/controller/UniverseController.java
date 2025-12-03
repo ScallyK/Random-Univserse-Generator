@@ -1,5 +1,6 @@
 package com.connor.random_universe_generator.controller;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,6 +21,7 @@ import com.connor.random_universe_generator.repository.StarSystemRepository;
 import com.connor.random_universe_generator.repository.UniverseRepository;
 import com.connor.random_universe_generator.service.UniverseService;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class UniverseController {
 
