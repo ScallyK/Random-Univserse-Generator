@@ -1,23 +1,28 @@
+"use client"
 import React, { useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Stars } from "@react-three/drei";
 import Galaxy from "./Galaxy";
 import fetchUniverse from "../hooks/FetchUniverse";
+import styles from "../stylesheets/UniverseMap.module.css";
 
 interface GalaxyData {
   id: number;
   name: string;
   position: [number, number, number];
+  age: number;
+  type: string;
 }
 
 // spreads galaxies across the map
 function computeGalaxyPosition(index: number, _total: number): [number, number, number] {
+  
   const goldenAngle = Math.PI * (3 - Math.sqrt(5)); // ~2.399963
   const radius = 5 + 30 * 5.0;
   const angle = index * goldenAngle;
   const x = Math.cos(angle) * radius;
   const z = Math.sin(angle) * radius;
-  
+
   // small vertical jitter so everything isn't flat
   const y = ((index % 5) - 2) * 100;
   return [x, y, z];
@@ -26,6 +31,7 @@ function computeGalaxyPosition(index: number, _total: number): [number, number, 
 export default function UniverseMap() {
 
   const [selectedGalaxy, setSelectedGalaxy] = useState<GalaxyData | null>(null);
+
   const universe = fetchUniverse();
   if (!universe) return <div>Loading universe...</div>;
 
@@ -52,6 +58,7 @@ export default function UniverseMap() {
               position={position}
               name={galaxy.name}
               onClick={() => setSelectedGalaxy(galaxy)}
+              starSystems={galaxy.starSystems}
             />
           );
         })}
@@ -59,20 +66,14 @@ export default function UniverseMap() {
       </Canvas>
 
       {selectedGalaxy && (
-        <div
-          style={{
-            position: "absolute",
-            top: 20,
-            left: 20,
-            padding: "1rem",
-            backgroundColor: "rgba(0,0,0,0.7)",
-            color: "white",
-            borderRadius: "8px",
-          }}
-        >
+        <div className={styles.entity_information_container}>
           <h2>Selected Galaxy</h2>
           <p>Name: {selectedGalaxy.name}</p>
-          <button onClick={() => setSelectedGalaxy(null)}>Close</button>
+          <p>Age: {Number(selectedGalaxy.age).toPrecision(3)}mil Years</p>
+          <p>Galaxy Type: {selectedGalaxy.type}</p>
+          <div className={styles.bottom_buttons}>
+            <button onClick={() => setSelectedGalaxy(null)}>Close</button>
+          </div>
         </div>
       )}
     </>

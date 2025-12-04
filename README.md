@@ -1,5 +1,7 @@
 # Random Universe Generator
 
+[WIP]
+
 Randomly generates a universe containing galaxies, star systems, stars, planets, moons, and lifeforms. Universes are generated via a REST API, can be saved in-memory and exported as JSON, and visualized in an interactive 3D map.
 
 Built with Java, Spring Boot, NEXT.js, and more.
@@ -7,22 +9,28 @@ Built with Java, Spring Boot, NEXT.js, and more.
 ## Features
 
 - **Random Generation**
-    Procedural universe generation with randomized data  
+
+    - Procedural universe generation with randomized data  
 
 - **Hierarchical Entities**
-    Galaxies, star systems, stars, planets, moons, and lifeforms organized hierarchically  
+
+    - Galaxies, star systems, stars, planets, moons, and lifeforms organized hierarchically  
 
 - **REST API**
-    Endpoints for generation and querying of universe data  
+
+    - Endpoints for generation and querying of universe data  
 
 - **Persistence & Export**
-    Persistence via Spring Data JPA (in-memory) and JSON snapshot export  
+
+    - Persistence via Spring Data JPA (in-memory) and JSON snapshot export  
 
 - **Interactive Frontend**
-    Next.js frontend using React Three Fiber, Three.js, and zustand for an interactive 3D map  
+
+   -  Next.js frontend using React Three Fiber, Three.js, and zustand for an interactive 3D map  
 
 - **CI/CD**
-    GitHub Actions pipeline for build, test, containerization, and optional deployment
+
+    - GitHub Actions pipeline for build, test, containerization, and optional deployment
 
 ## Getting Started
 
@@ -53,7 +61,8 @@ yarn dev
 ```
 
 Frontend default: http://localhost:3000
-Backend default: http://localhost:8000
+
+Backend default: http://localhost:8080
 
 ## API Endpoints
 
