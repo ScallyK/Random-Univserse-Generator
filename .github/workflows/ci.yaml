@@ -25,7 +25,7 @@ jobs:
       if: matrix.service == 'frontend'
       uses: actions/setup-node@v3
       with:
-        node-version: 18
+        node-version: 21
 
     - name: Set up JDK 21 (backend only)
       if: matrix.service == 'backend'
