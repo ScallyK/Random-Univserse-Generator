@@ -9,6 +9,8 @@ target
 .DS_Store
 ./data
 ./target
+/target
+target/*
 /random_universe_generator_front_end/node_modules
 /random_universe_generator_front_end/.next
 /random_universe_generator_front_end/next-env.d.ts
