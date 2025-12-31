@@ -1,5 +1,5 @@
 # Use official Node.js image for building the frontend
-FROM node:18-alpine
+FROM node:21-alpine
 
 # Set working directory
 WORKDIR /usr/src/app
