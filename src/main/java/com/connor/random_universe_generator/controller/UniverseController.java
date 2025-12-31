@@ -21,7 +21,7 @@ import com.connor.random_universe_generator.repository.StarSystemRepository;
 import com.connor.random_universe_generator.repository.UniverseRepository;
 import com.connor.random_universe_generator.service.UniverseService;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {"http://localhost:3000", "https://random-universe-generator-frontend.onrender.com/"})
 @RestController
 public class UniverseController {
 
