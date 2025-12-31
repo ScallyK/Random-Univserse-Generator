@@ -1,5 +1,8 @@
 name: RUG CI/CD Pipeline (Build, Test, Deploy)
 
+permissions:
+  contents: read
+
 on:
   push:
     branches: [ main ]
