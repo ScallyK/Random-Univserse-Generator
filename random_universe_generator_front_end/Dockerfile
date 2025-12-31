@@ -1,24 +1,18 @@
-# Use official Node.js image for building the frontend
-FROM node:21-alpine
+FROM node:24-alpine
 
-# Set working directory
 WORKDIR /usr/src/app
 
-# Copy package files and install dependencies
+# Install dependencies
 COPY package*.json ./
 RUN npm install
 
-# Copy all frontend source files
+# Copy application source
 COPY . .
 
-# Build the frontend assets (e.g., React/Vue/Angular)
+# Build Next.js app
 RUN npm run build
 
-# Install serve to serve the built static files
-RUN npm install -g serve
-
-# Expose port 3000
 EXPOSE 3000
 
-# Command to serve the built frontend
-CMD ["serve", "-s", "build", "-l", "3000"]
+# Start Next.js in production mode
+CMD ["npm", "start"]
