@@ -198,7 +198,21 @@ Secrets required (examples):
 
 ## License & Credits
 
-"Galaxy" model (https://skfb.ly/6xEsD) by 991519166 — licensed under Creative Commons Attribution 4.0.
+## License & Credits
+
+### 3D Models
+
+- **Galaxy**: ["Galaxy" model](https://skfb.ly/6xEsD) by 991519166 — licensed under **Creative Commons Attribution 4.0 (CC BY 4.0)**.
+- **Planets**: [Planet models](https://sketchfab.com/3d-models/various-planets-73c6c24e7c40409cafc6adacd5d71ff5) by Feivelyn.
+- **Sun**: [Sun model](https://sketchfab.com/3d-models/sun-9ef1c68fbb944147bcfcc891d3912645) by SebastianSosnowski.
+- **Moon**: [Ganymede Moon model](https://sketchfab.com/3d-models/ganymede-moon-7021e376ecb04b89b11fcbe017e48e8c) by SebastianSosnowski.
+- **Ringed Gas Giant**: [Ringed gas giant planet model](https://sketchfab.com/3d-models/ringed-gas-giant-planet-b4e21775e84e4cf3890f7796cfab1aca) by berzerkey.
+- **Ice Planet**: [Ice planet (procedural textures) model](https://sketchfab.com/3d-models/ice-planet-with-procedural-textures-68965317ff6f4338a79f6d373e2ae9fe) by imperioame.
+- **Lava Planet**: [Lava planet model](https://sketchfab.com/3d-models/lava-planet-9792612f76184ee3b48530c7515ce747) by FPSunreal.
+
+### Favicon
+
+- Favicon emoji graphic is from **Twemoji** (open source). Graphics copyright 2020 Twitter, Inc and other contributors.
 
 ## Contact
 

@@ -27,9 +27,10 @@ public class Moon {
     protected Moon() {
     } // required by JPA
 
-    public Moon(String name, double diameter, double mass, double gravity, int orbitalPeriod, int rotationalPeriod,
+    public Moon(Long id, String name, double diameter, double mass, double gravity, int orbitalPeriod, int rotationalPeriod,
             double surfaceTemperature, boolean hasAtmosphere, boolean isTidallyLocked,
             boolean hasWater, String color) {
+        this.id = id;
         this.name = name;
         this.diameter = diameter;
         this.mass = mass;

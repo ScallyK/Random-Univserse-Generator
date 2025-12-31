@@ -49,7 +49,8 @@ public class Planet {
 
     public Planet(){} // required by JPA
     
-    public Planet(String name, PlanetType planetType, double diameter, double mass, List<Moon> moons, Boolean planetHasLife, List<Lifeform> lifeforms, double gravity, double orbitalPeriod, double rotationalPeriod, double surfaceTemperature, boolean hasAtmosphere, boolean hasWater, String color, double averagePressure, double axialTilt, double distanceFromStar, boolean hasRings, double escapeVelocity) {
+    public Planet(Long id, String name, PlanetType planetType, double diameter, double mass, List<Moon> moons, Boolean planetHasLife, List<Lifeform> lifeforms, double gravity, double orbitalPeriod, double rotationalPeriod, double surfaceTemperature, boolean hasAtmosphere, boolean hasWater, String color, double averagePressure, double axialTilt, double distanceFromStar, boolean hasRings, double escapeVelocity) {
+        this.id = id;
         this.name = name;
         this.planetType = planetType;
         this.diameter = diameter;

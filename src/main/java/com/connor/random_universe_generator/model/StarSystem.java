@@ -32,7 +32,8 @@ public class StarSystem {
     
     public StarSystem() {} // required by JPA
 
-    public StarSystem(String name, double age, List<Star> stars, List<Planet> planets, boolean hasComets, boolean hasAsteroids, boolean hasNebulae, boolean hasBlackHoles) {
+    public StarSystem(Long id, String name, double age, List<Star> stars, List<Planet> planets, boolean hasComets, boolean hasAsteroids, boolean hasNebulae, boolean hasBlackHoles) {
+        this.id = id;
         this.name = name;
         this.age = age;
         this.stars = stars;
