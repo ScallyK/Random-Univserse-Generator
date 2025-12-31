@@ -7,7 +7,8 @@ function fetchUniverse() {
 
     // Runs API call on random universe generator ands sets data
     useEffect(() => {
-        fetch("http://localhost:8080/universe/random?saveToDatabase=false") // Replace in prod
+        // fetch("http://localhost:8080/universe/random?saveToDatabase=false") // dev
+        fetch("https://random-universe-generator-latest.onrender.com/universe/random?saveToDatabase=false") // prod
             .then((res) => res.json())
             .then(setUniverseData)
             .catch(console.error);
@@ -23,3 +24,4 @@ function fetchUniverse() {
 }
 
 export default fetchUniverse;
+
