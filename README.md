@@ -2,6 +2,8 @@
 
 [WIP]
 
+[Live Demo](https://random-universe-generator-frontend.onrender.com)
+
 Randomly generates a universe containing galaxies, star systems, stars, planets, moons, and lifeforms. Universes are generated via a REST API, can be saved in-memory and exported as JSON, and visualized in an interactive 3D map.
 
 Built with Java, Spring Boot, NEXT.js, and more.
@@ -60,9 +62,20 @@ yarn install
 yarn dev
 ```
 
+Uncomment the production URL inside of /hooks/FetchUniverse if needed.
+
 Frontend default: http://localhost:3000
 
 Backend default: http://localhost:8080
+
+### Running Docker Containers:
+
+- There are two docker containers contained in the release. Download and run them both with:
+
+```bash
+docker run -d -p 8080:8080 connorscally/random-universe-generator:latest
+docker run -d -p 3000:3000 connorscally/random-universe-generator-frontend:latest
+```
 
 ## API Endpoints
 
@@ -180,12 +193,12 @@ Backend default: http://localhost:8080
 
 GitHub Actions workflow includes:
 
-- Checkout and JDK (21) setup  
+- Checkout and JDK (21)/Node setup  
 - Maven dependency caching, tests, and packaging  
-- Docker image build and push  
-- Optional deployment (Render, EC2) via API
+- Docker image build and push (Backend and frontend)
+- Render deployment via API
 
-Secrets required (examples):
+Secrets required:
 
 - `DOCKERHUB_USERNAME`, `DOCKERHUB_TOKEN`  
 - `RENDER_SERVICE_ID`, `RENDER_API_KEY` (if deploying to Render)
@@ -195,8 +208,6 @@ Secrets required (examples):
 - Next.js 13+ with React Three Fiber  
 - 3D universe map with clickable entities 
 - 3D models, smooth orbit controls, info panels  
-
-## License & Credits
 
 ## License & Credits
 

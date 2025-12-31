@@ -7,6 +7,7 @@ import fetchUniverse from "../../hooks/FetchUniverse";
 import styles from "../../stylesheets/UniverseMap.module.css";
 import StarSystemMap from "../maps/StarSystemMap";
 import { computeGalaxyPosition, GalaxyData } from "../HelperFunctions";
+import { TextShimmer } from "../motion-primitives/text-shimmer";
 
 // Renders a map of star systems and galaxies in a 3D canvas
 export default function UniverseMap() {
@@ -28,7 +29,9 @@ export default function UniverseMap() {
   // Displays a loading screen while fetching universe data
   if (!universe) return (
     <div className={styles.loadingScreenContainer}>
-      <h1>Loading universe...</h1>
+      <TextShimmer className={styles.loadingScreenContainerTitle} duration={2}>
+        Loading universe...
+      </TextShimmer>
     </div>
   );
 
@@ -49,6 +52,7 @@ export default function UniverseMap() {
         <h1>RUG</h1>
         <h3>Random Universe Generator</h3>
         <p>Number of Galaxies: <span>{universe.galaxies.length ? universe.galaxies.length : 0}</span></p>
+        <p> <a href="https://github.com/ScallyK/Random-Univserse-Generator" target="_blank" rel="noopener noreferrer">GitHub Repo</a></p>
       </div>
 
       <Canvas
@@ -69,7 +73,7 @@ export default function UniverseMap() {
         {universe.galaxies.map((galaxy: any, idx: number) => {
 
           // Compute a fallback position if the galaxy doesn't provide one
-          const position: [number, number, number] = galaxy.position ? galaxy.position: computeGalaxyPosition(idx, universe.galaxies.length);
+          const position: [number, number, number] = galaxy.position ? galaxy.position : computeGalaxyPosition(idx, universe.galaxies.length);
 
           return (
             <Galaxy
@@ -90,22 +94,22 @@ export default function UniverseMap() {
         <div className={styles.galaxy_information_container}>
           <h2>Selected Galaxy</h2>
 
-          <hr className={styles.navigation_divider}/>
+          <hr className={styles.navigation_divider} />
 
           <p>Name: <span className={styles.galaxy_information_container_subtext}>{selectedGalaxy.name}</span></p>
           <p>Age: <span className={styles.galaxy_information_container_subtext}>{Number(selectedGalaxy.age).toPrecision(3)}M Years</span></p>
           <p>Galaxy Type: <span className={styles.galaxy_information_container_subtext}>{selectedGalaxy.type}</span></p>
           <p>Number of Star Systems: <span className={styles.galaxy_information_container_subtext}>{selectedGalaxy.starSystems ? selectedGalaxy.starSystems.length : 0}</span></p>
 
-          <hr className={styles.navigation_divider}/>
-          
+          <hr className={styles.navigation_divider} />
+
           <button className={styles.star_systems_list_button} onClick={() => cycleStarSystemListButton()}> {starSystemListButtonText} </button>
 
           {/* Renders star system drop down only when a galaxy has been clicked and has star systems */}
           {selectedGalaxy.starSystems && selectedGalaxy.starSystems.length > 0 && (
             <div className={styles.star_systems_list}>
 
-              <hr className={styles.navigation_divider}/>
+              <hr className={styles.navigation_divider} />
 
               {starSystemListOpen && (
                 <ul>
