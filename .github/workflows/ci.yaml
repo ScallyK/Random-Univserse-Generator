@@ -83,12 +83,16 @@ jobs:
         docker build -f random_universe_generator_front_end/Dockerfile -t ${{ secrets.DOCKERHUB_USERNAME }}/random-universe-generator-frontend:latest random_universe_generator_front_end
         docker push ${{ secrets.DOCKERHUB_USERNAME }}/random-universe-generator-frontend:latest
 
-    # Uncomment and update if you want to deploy using Render or another platform
-    # - name: Render Deploy
-    #   env:
-    #     RENDER_SERVICE_ID: ${{ secrets.RENDER_SERVICE_ID }}
-    #     RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
-    #   run: |
-    #     curl -X POST https://api.render.com/deploy/srv-${RENDER_SERVICE_ID} \
-    #       -H "Accept: application/json" \
-    #       -H "Authorization: Bearer ${RENDER_API_KEY}"
+    - name: Render Deploy
+      env:
+        RENDER_SERVICE_ID_BACKEND: ${{ secrets.RENDER_SERVICE_ID_BACKEND }}
+        RENDER_SERVICE_ID_FRONTEND: ${{ secrets.RENDER_SERVICE_ID_FRONTEND }}
+        RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
+      run: |
+        curl -X POST https://api.render.com/deploy/srv-${RENDER_SERVICE_ID_BACKEND} \
+          -H "Accept: application/json" \
+          -H "Authorization: Bearer ${RENDER_API_KEY}"
+        curl -X POST https://api.render.com/deploy/srv-${RENDER_SERVICE_ID_FRONTEND} \
+          -H "Accept: application/json" \
+          -H "Authorization: Bearer ${RENDER_API_KEY}"
+        
