@@ -144,3 +144,168 @@
     font-weight: bold !important;
     flex: 1 !important;
 }
+
+/* Mobile only CSS */
+@media screen and (max-width: 768px) {
+
+    .star_information_container {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        padding: 1rem;
+        width: 10rem;
+        background-color: rgba(58, 58, 58, 0.7);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: white;
+        border-radius: 8px;
+    }
+
+    .planet_information_container {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        padding: 1rem;
+        width: 10rem;
+        background-color: rgba(58, 58, 58, 0.7);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: white;
+        border-radius: 8px;
+    }
+
+    .planet_information_container h2, .star_information_container h2 {
+        font-size: 0.6rem;
+    }
+
+    .star_information_container p,
+    .planet_information_container p,
+    .header p {
+        font-size: 0.6rem;
+        margin: 0.25rem 0;
+        padding-top: 5px;
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+    }
+
+    .planet_information_container_subtext,
+    .star_information_container_subtext {
+        font-weight: bold;
+    }
+
+
+    .header {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        display: flex;
+        gap: 10px;
+        flex-direction: column;
+        padding: 0.5rem;
+        background-color: rgba(58, 58, 58, 0.7);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 8px;
+        width: 10rem;
+    }
+
+    .header h2 {
+        font-size: 1rem !important;
+    }
+
+    .back_button {
+        background-color: rgba(255, 255, 255, 0.2);
+        border: none;
+        color: white;
+        cursor: pointer;
+        border-radius: 4px;
+        padding: 0.25rem 0.5rem;
+        margin-right: 1rem;
+        z-index: 100000000;
+        align-self: baseline;
+        font-size: 0.6rem !important;
+    }
+
+    .title {
+        display: inline;
+        color: white;
+        margin: 0;
+        font-size: xx-large !important;
+        border-bottom: 1px solid rgb(152, 152, 152);
+    }
+
+    .star_system_details {
+        font-size: 0.6rem !important;
+    }
+
+    .star_system_details p {
+        padding-top: 5px !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        gap: 1rem !important;
+    }
+
+    .star_system_details_subtext {
+        text-align: right !important;
+        margin: 0 !important;
+        font-style: italic !important;
+        font-weight: bold !important;
+        flex: 1 !important;
+    }
+
+    .navigation_instructions {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        bottom: 20px;
+        right: 20px;
+        padding: 1rem;
+        width: 15rem;
+        background-color: rgba(58, 58, 58, 0.7);
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        color: white;
+        border-radius: 8px;
+        justify-content: space-between;
+    }
+
+    .navigation_instructions h2 {
+        margin-top: 0;
+        margin-bottom: 0.25rem;
+        font-size: 1rem;
+    }
+
+    .navigation_instructions p {
+        font-size: 0.6rem;
+    }
+
+    .navigation_divider {
+        height: 1px;
+        background-color: rgba(255, 255, 255, 0.2);
+        margin: 0.25rem 0;
+    }
+
+    .navigation_instructions ul {
+        padding-left: 0.6rem;
+        margin: 0;
+    }
+
+    .navigation_instructions li {
+        display: flex;
+        margin-bottom: 0.25rem;
+        font-size: 0.5rem;
+    }
+
+    .navigation_instructions li p {
+        margin-left: 75px;
+        text-align: right;
+        margin: 0;
+        font-style: italic;
+        font-weight: bold;
+        flex: 1;
+    }
+
+    .bottom_flavor {
+        font-style: italic;
+        font-weight: bold;
+        margin-top: 1rem;
+    }
+
+}

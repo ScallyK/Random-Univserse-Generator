@@ -15,6 +15,16 @@ export default function StarSystemMap({ starSystem, onBack }: { starSystem: Star
     const [selectedPlanet, setSelectedPlanet] = useState<PlanetData | null>(null);              // Holds currently selected planet for details view
     const [navigateToPlanet, setNavigateToPlanet] = useState<PlanetData | null>(null);          // Holds currently selected planet to navigate to its detailed map
     const [planetsByStarId, setPlanetsByStarId] = useState<{ [starId: number]: any[] }>({});    // Helps map planets to their respective stars
+    const [isMobile, setIsMobile] = useState(false);                                            // Tracks if viewport is mobile-sized
+
+    useEffect(() => {
+        const checkIsMobile = () => setIsMobile(window.innerWidth <= 768);
+
+        checkIsMobile();
+        window.addEventListener("resize", checkIsMobile);
+
+        return () => window.removeEventListener("resize", checkIsMobile);
+    }, []);
 
     // Memoize scales and rotation speeds to prevent regeneration on re-render
     const starScales = useMemo(() => memorizeScaleAndRotation("star", starSystem).scales, [starSystem.id]);
@@ -142,46 +152,50 @@ export default function StarSystemMap({ starSystem, onBack }: { starSystem: Star
             </Canvas>
 
 
-            <div className={styles.star_information_container}>
-                {selectedStar && (
-                    <>
-                        <h2>Star: <strong>{selectedStar.name || "Star"}</strong></h2>
-                        <hr className={styles.navigation_divider}/>
+            {(!isMobile || selectedStar) && (
+                <div className={styles.star_information_container}>
+                    {selectedStar && (
+                        <>
+                            <h2>Star: <strong>{selectedStar.name || "Star"}</strong></h2>
+                            <hr className={styles.navigation_divider}/>
 
-                        <p>Type: <span className={styles.star_information_container_subtext}>{StarTypeLabel[selectedStar.starType as keyof typeof StarTypeLabel]}</span></p>
-                        <p>Mass: <span className={styles.star_information_container_subtext}>{selectedStar.mass.toPrecision(3)}M</span></p>
-                        <p>Diameter: <span className={styles.star_information_container_subtext}>{selectedStar.diameter.toPrecision(3)}km</span></p>
-                        <p>Temperature: <span className={styles.star_information_container_subtext}>{selectedStar.temperature.toPrecision(3)}K</span></p>
-                        <p>Luminosity: <span className={styles.star_information_container_subtext}>{selectedStar.luminosity.toPrecision(3)}L</span></p>
-                        <p>Radius: <span className={styles.star_information_container_subtext}>{selectedStar.radius.toPrecision(3)}R</span></p>
-                        <p>Age: <span className={styles.star_information_container_subtext}>{selectedStar.age.toPrecision(3)}M years</span></p>
-                        <p>Metallicity: <span className={styles.star_information_container_subtext}>{selectedStar.metallacity.toPrecision(3)}</span></p>
-                    </>
-                )}
-                {!selectedStar && <p>No star selected</p>}
-            </div>
+                            <p>Type: <span className={styles.star_information_container_subtext}>{StarTypeLabel[selectedStar.starType as keyof typeof StarTypeLabel]}</span></p>
+                            <p>Mass: <span className={styles.star_information_container_subtext}>{selectedStar.mass.toPrecision(3)}M</span></p>
+                            <p>Diameter: <span className={styles.star_information_container_subtext}>{selectedStar.diameter.toPrecision(3)}km</span></p>
+                            <p>Temperature: <span className={styles.star_information_container_subtext}>{selectedStar.temperature.toPrecision(3)}K</span></p>
+                            <p>Luminosity: <span className={styles.star_information_container_subtext}>{selectedStar.luminosity.toPrecision(3)}L</span></p>
+                            <p>Radius: <span className={styles.star_information_container_subtext}>{selectedStar.radius.toPrecision(3)}R</span></p>
+                            <p>Age: <span className={styles.star_information_container_subtext}>{selectedStar.age.toPrecision(3)}M years</span></p>
+                            <p>Metallicity: <span className={styles.star_information_container_subtext}>{selectedStar.metallacity.toPrecision(3)}</span></p>
+                        </>
+                    )}
+                    {!selectedStar && <p>No star selected</p>}
+                </div>
+            )}
 
-            <div className={styles.planet_information_container}>
-                {selectedPlanet && (
-                    <>
-                        <h2>Planet: <strong>{selectedPlanet.name || "Planet"}</strong></h2>
-                        <hr className={styles.navigation_divider}/>
+            {(!isMobile || selectedPlanet) && (
+                <div className={styles.planet_information_container}>
+                    {selectedPlanet && (
+                        <>
+                            <h2>Planet: <strong>{selectedPlanet.name || "Planet"}</strong></h2>
+                            <hr className={styles.navigation_divider}/>
 
-                        <p>Type: <span className={styles.planet_information_container_subtext}>{PlanetTypeLabel[(selectedPlanet as PlanetData).planetType as keyof typeof PlanetTypeLabel]}</span></p>
-                        <p>Diameter: <span className={styles.planet_information_container_subtext}>{(selectedPlanet as PlanetData).diameter.toPrecision(3)}km</span></p>
-                        <p>Mass: <span className={styles.planet_information_container_subtext}>{(selectedPlanet as PlanetData).mass.toPrecision(3)} EM</span></p>
-                        <p>Surface Temp: <span className={styles.planet_information_container_subtext}>{(selectedPlanet as PlanetData).surfaceTemperature.toPrecision(3)}K</span></p>
-                        <p>Gravity: <span className={styles.planet_information_container_subtext}>{(selectedPlanet as PlanetData).gravity.toPrecision(3)}m/s²</span></p>
-                        <p>Has Water: <span className={styles.planet_information_container_subtext}>{(selectedPlanet as PlanetData).hasWater ? "Yes" : "No"}</span></p>
-                        <p>Has Atmosphere: <span className={styles.planet_information_container_subtext}>{(selectedPlanet as PlanetData).hasAtmosphere ? "Yes" : "No"}</span></p>
-                        <p>Has Life: <span className={styles.planet_information_container_subtext}>{(selectedPlanet as PlanetData).planetHasLife === null ? "Unknown" : (selectedPlanet as PlanetData).planetHasLife ? "Yes" : "No"}</span></p>
-                        <p>Orbital Period: <span className={styles.planet_information_container_subtext}>{(selectedPlanet as PlanetData).orbitalPeriod.toPrecision(3)}</span></p>
-                        <p>Rotation Period: <span className={styles.planet_information_container_subtext}>{(selectedPlanet as PlanetData).rotationalPeriod.toPrecision(3)}</span></p>
-                        <p>Number of Moons: <span className={styles.planet_information_container_subtext}>{(selectedPlanet as PlanetData).moons.length}</span></p>
-                    </>
-                )}
-                {!selectedPlanet && <p>No planet selected</p>}
-            </div>
+                            <p>Type: <span className={styles.planet_information_container_subtext}>{PlanetTypeLabel[(selectedPlanet as PlanetData).planetType as keyof typeof PlanetTypeLabel]}</span></p>
+                            <p>Diameter: <span className={styles.planet_information_container_subtext}>{(selectedPlanet as PlanetData).diameter.toPrecision(3)}km</span></p>
+                            <p>Mass: <span className={styles.planet_information_container_subtext}>{(selectedPlanet as PlanetData).mass.toPrecision(3)} EM</span></p>
+                            <p>Surface Temp: <span className={styles.planet_information_container_subtext}>{(selectedPlanet as PlanetData).surfaceTemperature.toPrecision(3)}K</span></p>
+                            <p>Gravity: <span className={styles.planet_information_container_subtext}>{(selectedPlanet as PlanetData).gravity.toPrecision(3)}m/s²</span></p>
+                            <p>Has Water: <span className={styles.planet_information_container_subtext}>{(selectedPlanet as PlanetData).hasWater ? "Yes" : "No"}</span></p>
+                            <p>Has Atmosphere: <span className={styles.planet_information_container_subtext}>{(selectedPlanet as PlanetData).hasAtmosphere ? "Yes" : "No"}</span></p>
+                            <p>Has Life: <span className={styles.planet_information_container_subtext}>{(selectedPlanet as PlanetData).planetHasLife === null ? "Unknown" : (selectedPlanet as PlanetData).planetHasLife ? "Yes" : "No"}</span></p>
+                            <p>Orbital Period: <span className={styles.planet_information_container_subtext}>{(selectedPlanet as PlanetData).orbitalPeriod.toPrecision(3)}</span></p>
+                            <p>Rotation Period: <span className={styles.planet_information_container_subtext}>{(selectedPlanet as PlanetData).rotationalPeriod.toPrecision(3)}</span></p>
+                            <p>Number of Moons: <span className={styles.planet_information_container_subtext}>{(selectedPlanet as PlanetData).moons.length}</span></p>
+                        </>
+                    )}
+                    {!selectedPlanet && <p>No planet selected</p>}
+                </div>
+            )}
 
             <div className={styles.navigation_instructions}>
                 <h2>Map Controls</h2>
