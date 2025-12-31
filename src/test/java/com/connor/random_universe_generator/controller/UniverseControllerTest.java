@@ -49,9 +49,8 @@ public class UniverseControllerTest {
     @Test
     public void testGenerateRandomGalaxy() throws Exception {
         SimpleGalaxy galaxy = new SimpleGalaxy(1L, "TestGalaxy", 4.6, "Elliptical", null);
-        galaxy.setId(1L);
 
-        Mockito.when(universeService.generateGalaxy()).thenReturn(galaxy);
+        Mockito.when(universeService.generateGalaxy(false)).thenReturn(galaxy);
 
         mockMvc.perform(get("/galaxy/random"))
                 .andDo(print())
@@ -68,7 +67,7 @@ public class UniverseControllerTest {
         StarSystem starSystem = new StarSystem(1L, "TestStarSystem", 4.6, null, null, false, false, false, false);
         starSystem.setId(1L);
 
-        Mockito.when(universeService.generateStarSystem()).thenReturn(starSystem);
+        Mockito.when(universeService.generateStarSystem(false)).thenReturn(starSystem);
 
         mockMvc.perform(get("/star_system/random"))
                 .andDo(print())
@@ -89,7 +88,7 @@ public class UniverseControllerTest {
         Star star = new Star(1L, "TestStar", StarType.BLUE_GIANT, 1.989e30, 1.3927e6, 5778, 3.828e26, 696340, 4.6, 0.012);
         star.setId(1L);
 
-        Mockito.when(universeService.generateStar()).thenReturn(star);
+        Mockito.when(universeService.generateStar(false)).thenReturn(star);
 
         mockMvc.perform(get("/star/random"))
                 .andDo(print())
@@ -111,7 +110,7 @@ public class UniverseControllerTest {
         Planet planet = new Planet(1L, "TestPlanet", PlanetType.TERRESTRIAL, 1000, 1e20, null, false, null, 9.8, 365, 24, 288, true, false, "#FF5733", 101.3, 23.5, 1.496e8, false, 11.2);
         planet.setId(1L);
 
-        Mockito.when(universeService.generatePlanet()).thenReturn(planet);
+        Mockito.when(universeService.generatePlanet(false)).thenReturn(planet);
 
         mockMvc.perform(get("/planet/random"))
                 .andDo(print())
@@ -130,7 +129,7 @@ public class UniverseControllerTest {
         Moon moon = new Moon(1L, "TestMoon", 1000, 1e20, 0.5, 27, 655, 250, true, false, true, "#AAAAAA");
         moon.setId(1L);
 
-        Mockito.when(universeService.generateMoon()).thenReturn(moon);
+        Mockito.when(universeService.generateMoon(false)).thenReturn(moon);
 
         mockMvc.perform(get("/moon/random"))
                 .andDo(print())
