@@ -28,7 +28,7 @@ Built with Java, Spring Boot, NEXT.js, and more.
 
 - **Interactive Frontend**
 
-   -  Next.js frontend using React Three Fiber, Three.js, and zustand for an interactive 3D map  
+   -  Next.js frontend using React and Three.js for an interactive 3D map  
 
 - **CI/CD**
 
