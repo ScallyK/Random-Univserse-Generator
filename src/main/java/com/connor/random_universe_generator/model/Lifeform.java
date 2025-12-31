@@ -25,9 +25,10 @@ public class Lifeform {
     protected Lifeform() {
     } // required by JPA
 
-    public Lifeform(String name, int lifespan, boolean intelligent,
+    public Lifeform(Long id, String name, int lifespan, boolean intelligent,
             double averageHeight, double averageWeight, String kardashevScale,
             String habitat, String diet, String reproductionMethod) {
+        this.id = id;
         this.name = name;
         this.lifespan = lifespan;
         this.intelligent = intelligent;

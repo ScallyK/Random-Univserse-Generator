@@ -48,7 +48,7 @@ public class UniverseControllerTest {
 
     @Test
     public void testGenerateRandomGalaxy() throws Exception {
-        SimpleGalaxy galaxy = new SimpleGalaxy("TestGalaxy", 4.6, "Elliptical", null);
+        SimpleGalaxy galaxy = new SimpleGalaxy(1L, "TestGalaxy", 4.6, "Elliptical", null);
         galaxy.setId(1L);
 
         Mockito.when(universeService.generateGalaxy()).thenReturn(galaxy);
@@ -65,7 +65,7 @@ public class UniverseControllerTest {
 
     @Test
     public void testGenerateRandomStarSystem() throws Exception {
-        StarSystem starSystem = new StarSystem("TestStarSystem", 4.6, null, null, false, false, false, false);
+        StarSystem starSystem = new StarSystem(1L, "TestStarSystem", 4.6, null, null, false, false, false, false);
         starSystem.setId(1L);
 
         Mockito.when(universeService.generateStarSystem()).thenReturn(starSystem);
@@ -86,7 +86,7 @@ public class UniverseControllerTest {
 
     @Test
     public void testGenerateRandomStar() throws Exception {
-        Star star = new Star("TestStar", StarType.BLUE_GIANT, 1.989e30, 1.3927e6, 5778, 3.828e26, 696340, 4.6, 0.012);
+        Star star = new Star(1L, "TestStar", StarType.BLUE_GIANT, 1.989e30, 1.3927e6, 5778, 3.828e26, 696340, 4.6, 0.012);
         star.setId(1L);
 
         Mockito.when(universeService.generateStar()).thenReturn(star);
@@ -108,7 +108,7 @@ public class UniverseControllerTest {
 
     @Test
     public void testGenerateRandomPlanet() throws Exception {
-        Planet planet = new Planet("TestPlanet", PlanetType.TERRESTRIAL, 1000, 1e20, null, false, null, 9.8, 365, 24, 288, true, false, "#FF5733", 101.3, 23.5, 1.496e8, false, 11.2);
+        Planet planet = new Planet(1L, "TestPlanet", PlanetType.TERRESTRIAL, 1000, 1e20, null, false, null, 9.8, 365, 24, 288, true, false, "#FF5733", 101.3, 23.5, 1.496e8, false, 11.2);
         planet.setId(1L);
 
         Mockito.when(universeService.generatePlanet()).thenReturn(planet);
@@ -127,7 +127,7 @@ public class UniverseControllerTest {
 
     @Test
     public void testGenerateRandomMoon() throws Exception {
-        Moon moon = new Moon("TestMoon", 1000, 1e20, 0.5, 27, 655, 250, true, false, true, "#AAAAAA");
+        Moon moon = new Moon(1L, "TestMoon", 1000, 1e20, 0.5, 27, 655, 250, true, false, true, "#AAAAAA");
         moon.setId(1L);
 
         Mockito.when(universeService.generateMoon()).thenReturn(moon);

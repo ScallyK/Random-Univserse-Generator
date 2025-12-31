@@ -1,0 +1,145 @@
+.moon_information_container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 1rem;
+    width: 18rem;
+    background-color: rgba(58, 58, 58, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    border-radius: 8px;
+}
+
+.navigation_instructions {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    bottom: 20px;
+    right: 20px;
+    padding: 1rem;
+    width: 30rem;
+    background-color: rgba(58, 58, 58, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: white;
+    border-radius: 8px;
+}
+
+.navigation_instructions h2 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+
+.navigation_divider {
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.2);
+    margin: 0.5rem 0;
+}
+
+.navigation_instructions ul {
+    padding-left: 1.2rem;
+    margin: 0;
+}
+
+.navigation_instructions li {
+    display: flex;
+    margin-bottom: 0.5rem;
+}
+
+.navigation_instructions li p {
+    margin-left: 150px;
+    text-align: right;
+    margin: 0;
+    font-style: italic;
+    font-weight: bold;
+    flex: 1;
+}
+
+.bottom_flavor {
+    /* text-align: center; */
+    font-style: italic;
+    font-weight: bold;
+    margin-top: 1rem;
+}
+
+.header {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    align-items: last baseline;
+    gap: 20px;
+    flex-direction: column;
+    padding: 1rem;
+    background-color: rgba(58, 58, 58, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+}
+
+.back_button {
+    background-color: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    margin-right: 1rem;
+    z-index: 100000000;
+}
+
+.back_button:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.title {
+    display: inline;
+    color: white;
+    margin: 0;
+    font-size: xx-large !important;
+    border-bottom: 1px solid rgb(152, 152, 152);
+}
+
+.planet_details {
+    font-size: 1.1rem;
+}
+
+.planet_details p,
+.moon_information_container p,
+.lifeform_data p {
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.planet_details_subtext,
+.moon_information_container_subtext,
+.lifeform_data_subtext {
+    text-align: right;
+    margin: 0;
+    font-style: italic;
+    font-weight: bold;
+    flex: 1;
+}
+
+.lifeforms_dropdown {
+    position: absolute;
+    top: 400px;
+    right: 20px;
+    padding: 1rem;
+    width: 18rem;
+    background-color: rgba(58, 58, 58, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    border-radius: 8px;
+    z-index: 10000000;
+}
+
+.lifeforms_select {
+    z-index: 100000000;
+    margin-left: 10px;
+}
+
+.lifeform_data {
+    margin-top: 20px;
+    font-size: 1.1rem;
+}

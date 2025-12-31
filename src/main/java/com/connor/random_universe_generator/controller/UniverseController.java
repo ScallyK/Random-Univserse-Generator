@@ -59,7 +59,7 @@ public class UniverseController {
 
     // Endpoint for generating a full random universe
     @GetMapping("/universe/random")
-    public SimpleUniverse generateUniverse(@RequestParam(name = "saveToDatabase", defaultValue = "false") boolean saveToDatabase, @RequestParam(name = "saveToFile", defaultValue = "false") boolean saveToFile) {
+    public SimpleUniverse generateUniverse(@RequestParam(name = "saveToDatabase", required = false, defaultValue = "false") boolean saveToDatabase, @RequestParam(name = "saveToFile", required = false, defaultValue = "false") boolean saveToFile) {
         return universeService.generateUniverse(saveToDatabase, saveToFile);
     }
 
@@ -72,8 +72,15 @@ public class UniverseController {
 
     // Endpoint for generating a single random simple galaxy (< 1000 star systems)
     @GetMapping("/galaxy/random")
-    public SimpleGalaxy generateGalaxy() {
-        return universeService.generateGalaxy();
+    public SimpleGalaxy generateGalaxy(@RequestParam(name = "saveToDatabase", required = false, defaultValue = "false") boolean saveToDatabase) {
+        
+        SimpleGalaxy galaxy = universeService.generateGalaxy(saveToDatabase);
+
+        if (saveToDatabase) {
+            galaxyRepository.save(galaxy);
+        }
+
+        return galaxy;
     }
 
     // Endpoint for retrieving a galaxy by ID. If an id is not provided, defaults to 1
@@ -85,8 +92,15 @@ public class UniverseController {
 
     // Endpoint for generating a single random star system
     @GetMapping("/star_system/random")
-    public StarSystem generateStarSystem() {
-        return universeService.generateStarSystem();
+    public StarSystem generateStarSystem(@RequestParam(name = "saveToDatabase", required = false, defaultValue = "false") boolean saveToDatabase) {
+
+        StarSystem starSystem = universeService.generateStarSystem(saveToDatabase);
+
+        if (saveToDatabase) {
+            starSystemRepository.save(starSystem);
+        }
+
+        return starSystem;
     }
 
     // Endpoint for retrieving a star system by ID. If an id is not provided, defaults to 1
@@ -98,8 +112,15 @@ public class UniverseController {
 
     // Endpoint for generating a single random star
     @GetMapping("/star/random")
-    public Star generateStar() {
-        return universeService.generateStar();
+    public Star generateStar(@RequestParam(name = "saveToDatabase", required = false, defaultValue = "false") boolean saveToDatabase) {
+
+        Star star = universeService.generateStar(saveToDatabase);
+        
+        if (saveToDatabase) {
+            starRepository.save(star);
+        }
+
+        return star;
     }
 
     // Endpoint for retrieving a star by ID. If an id is not provided, defaults to 1
@@ -111,21 +132,35 @@ public class UniverseController {
 
     // Endpoint for generating a single random planet
     @GetMapping("/planet/random")
-    public Planet generatePlanet() {
-        return universeService.generatePlanet();
+    public Planet generatePlanet(@RequestParam(name = "saveToDatabase", required = false, defaultValue = "false") boolean saveToDatabase) {
+
+        Planet planet = universeService.generatePlanet(saveToDatabase);
+
+        if (saveToDatabase) {
+            planetRepository.save(planet);
+        }
+
+        return planet;
     }
 
     // Endpoint for retrieving a planet by ID. If an id is not provided, defaults to 1
     @GetMapping("/planet/fetch")
     public Planet getPlanet(@RequestParam(name = "id", required = false, defaultValue = "1") long id) {
         return planetRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Planet not found"));
+                .orElseThrow(() -> new RuntimeException("Planet not found with id: " + id));
     }
 
     // Endpoint for generating a single random moon
     @GetMapping("/moon/random")
-    public Moon generateMoon() {
-        return universeService.generateMoon();
+    public Moon generateMoon(@RequestParam(name = "saveToDatabase", required = false, defaultValue = "false") boolean saveToDatabase) {
+        
+        Moon moon = universeService.generateMoon(saveToDatabase);
+
+        if (saveToDatabase) {
+            moonRepository.save(moon);
+        }
+
+        return moon;
     }
 
     // Endpoint for retrieving a moon by ID. If an id is not provided, defaults to 1
@@ -136,8 +171,15 @@ public class UniverseController {
     }
 
     @GetMapping("/lifeform/random")
-    public Lifeform generateLifeform() {
-        return universeService.generateLifeform();
+    public Lifeform generateLifeform(@RequestParam(name = "saveToDatabase", required = false, defaultValue = "false") boolean saveToDatabase) {
+
+        Lifeform lifeform = universeService.generateLifeform(saveToDatabase);
+
+        if (saveToDatabase) {
+            lifeformRepository.save(lifeform);
+        }
+
+        return lifeform;
     }
 
     // Endpoint for retrieving a lifeform by ID. If an id is not provided, defaults to 1

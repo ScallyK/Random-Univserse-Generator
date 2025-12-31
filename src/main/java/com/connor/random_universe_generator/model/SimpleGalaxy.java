@@ -25,7 +25,8 @@ public class SimpleGalaxy {
 
     public SimpleGalaxy() {} // required by JPA
 
-    public SimpleGalaxy(String name, double age, String type, List<StarSystem> starSystems) {
+    public SimpleGalaxy(Long id, String name, double age, String type, List<StarSystem> starSystems) {
+        this.id = id;
         this.name = name;
         this.age = age;
         this.type = type;

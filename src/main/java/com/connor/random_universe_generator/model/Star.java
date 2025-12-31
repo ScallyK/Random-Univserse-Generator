@@ -30,7 +30,8 @@ public class Star {
 
     public Star() {} // required by JPA
 
-    public Star(String name, StarType starType, double mass, double diameter, double temperature, double luminosity, double radius, double age, double metallacity) {
+    public Star(Long id, String name, StarType starType, double mass, double diameter, double temperature, double luminosity, double radius, double age, double metallacity) {
+        this.id = id;
         this.name = name;
         this.starType = starType;
         this.mass = mass;

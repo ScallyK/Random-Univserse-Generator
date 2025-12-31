@@ -44,7 +44,7 @@ public class UniverseService {
 
         // Generates between 1 and 10 galaxies
         List<SimpleGalaxy> galaxies = java.util.stream.IntStream.range(0, 1 + random.nextInt(10))
-                .mapToObj(i -> generateGalaxy())
+                .mapToObj(i -> generateGalaxy(saveToDatabase))
                 .collect(java.util.stream.Collectors.toList());
 
         var universe = new SimpleUniverse(galaxies);
@@ -62,7 +62,12 @@ public class UniverseService {
 
     // Generates a random single galaxy
     public SimpleGalaxy generateGalaxy() {
+        return generateGalaxy(false);
+    }
 
+    public SimpleGalaxy generateGalaxy(boolean forPersistence) {
+
+        Long id = forPersistence ? null : random.nextLong(100000000);
         String[] galaxyTypes = {"Spiral", "Elliptical", "Irregular", "Barred Spiral", "Peculiar", "Lenticular"};
         String galaxyName = RandomNameGenerator.generateGalaxyName();
         double age = 1 + random.nextDouble() * 13; // in billion years
@@ -70,29 +75,34 @@ public class UniverseService {
 
         // Generates between 1 and 1000 star systems
         List<StarSystem> starSystems = java.util.stream.IntStream.range(0, 1 + random.nextInt(1000))
-                .mapToObj(i -> generateStarSystem())
+            .mapToObj(i -> generateStarSystem(forPersistence))
                 .collect(java.util.stream.Collectors.toList());
 
-        SimpleGalaxy galaxy = new SimpleGalaxy(galaxyName, age, type, starSystems);
+        SimpleGalaxy galaxy = new SimpleGalaxy(id, galaxyName, age, type, starSystems);
 
         return galaxy;
     }
 
     // Generates a random single solar system
     public StarSystem generateStarSystem() {
+        return generateStarSystem(false);
+    }
 
+    public StarSystem generateStarSystem(boolean forPersistence) {
+
+        Long id = forPersistence ? null : random.nextLong(100000000);
         String starSystemName = RandomNameGenerator.generateStarSystemName();
         double age = 1 + random.nextDouble() * 13; // in billion years
 
         // Generates between 1 and 7 stars
         List<Star> stars = java.util.stream.IntStream.range(0, 1 + random.nextInt(7))
-                .mapToObj(i -> generateStar())
-                .collect(java.util.stream.Collectors.toList());
+            .mapToObj(i -> generateStar(forPersistence))
+            .collect(java.util.stream.Collectors.toList());
 
         // Generates between 0 and 12 planets
         int planetCount = 0 + random.nextInt(12);
         List<Planet> planets = java.util.stream.IntStream.range(0, planetCount)
-                .mapToObj(i -> generatePlanet())
+            .mapToObj(i -> generatePlanet(forPersistence))
                 .collect(java.util.stream.Collectors.toList());
 
         boolean hasComets = random.nextBoolean();
@@ -100,14 +110,19 @@ public class UniverseService {
         boolean hasNebulae = random.nextBoolean();
         boolean hasBlackHoles = random.nextBoolean();
 
-        StarSystem starSystem = new StarSystem(starSystemName, age, stars, planets, hasComets, hasAsteroids, hasNebulae, hasBlackHoles);
+        StarSystem starSystem = new StarSystem(id, starSystemName, age, stars, planets, hasComets, hasAsteroids, hasNebulae, hasBlackHoles);
 
         return starSystem;
     }
 
     // Generates a random single star
     public Star generateStar() {
+        return generateStar(false);
+    }
 
+    public Star generateStar(boolean forPersistence) {
+
+        Long id = forPersistence ? null : random.nextLong(100000000);
         String starName = RandomNameGenerator.generateStarName();
         StarType starType = StarType.values()[random.nextInt(StarType.values().length)];
         double mass = 1e29 + random.nextDouble() * 1e32; // in kilograms
@@ -118,14 +133,19 @@ public class UniverseService {
         double age = 0.1 + random.nextDouble() * 10; // in billion years
         double metallacity = random.nextDouble(); // proportion of elements heavier than helium
 
-        Star star = new Star(starName, starType, mass, diameter, temperature, luminosity, radius, age, metallacity);
+        Star star = new Star(id, starName, starType, mass, diameter, temperature, luminosity, radius, age, metallacity);
 
         return star;
     }
 
     // Generates a random single planet
     public Planet generatePlanet() {
+        return generatePlanet(false);
+    }
 
+    public Planet generatePlanet(boolean forPersistence) {
+
+        Long id = forPersistence ? null : random.nextLong(100000000);
         String planetName = RandomNameGenerator.generatePlanetName();
         PlanetType planetType = PlanetType.values()[random.nextInt(PlanetType.values().length)];
         double diameter = 1000 + random.nextDouble() * 100000; // in kilometers
@@ -133,7 +153,7 @@ public class UniverseService {
 
         // Generates between 0 and 5 moons
         List<Moon> moons = java.util.stream.IntStream.range(0, random.nextInt(6))
-                .mapToObj(i -> generateMoon())
+            .mapToObj(i -> generateMoon(forPersistence))
                 .collect(java.util.stream.Collectors.toList());
         Boolean hasLife = random.nextBoolean(); // change to also be null sometimes
         Boolean hasRings = random.nextBoolean();
@@ -151,17 +171,22 @@ public class UniverseService {
 
         // Generates between 0 and 10 lifeforms if the planet has life
         List<Lifeform> lifeforms = hasLife ? java.util.stream.IntStream.range(0, 1 + random.nextInt(10))
-            .mapToObj(i -> generateLifeform())
+            .mapToObj(i -> generateLifeform(forPersistence))
             .collect(java.util.stream.Collectors.toList()) : null;
 
-        Planet planet = new Planet(planetName, planetType, diameter, mass, moons, hasLife, lifeforms, gravity, orbitalPeriod, rotationalPeriod, surfaceTemperature, hasAtmosphere, hasWater, color, averagePressure, axialTilt, distanceFromStar, hasRings, escapeVelocity);
+        Planet planet = new Planet(id, planetName, planetType, diameter, mass, moons, hasLife, lifeforms, gravity, orbitalPeriod, rotationalPeriod, surfaceTemperature, hasAtmosphere, hasWater, color, averagePressure, axialTilt, distanceFromStar, hasRings, escapeVelocity);
 
         return planet;
     }
 
     // Generates a random single moon
     public Moon generateMoon() {
+        return generateMoon(false);
+    }
 
+    public Moon generateMoon(boolean forPersistence) {
+
+        Long id = forPersistence ? null : random.nextLong(100000000);
         String moonName = RandomNameGenerator.generateMoonName();
         double diameter = 10 + random.nextDouble() * 5000; // in kilometers
         double mass = 1e15 + random.nextDouble() * 1e22;
@@ -174,18 +199,23 @@ public class UniverseService {
         boolean hasWater = random.nextBoolean();
         String color = RandomNameGenerator.randomHexColorGenerator();
 
-        Moon moon = new Moon(moonName, diameter, mass, gravity, orbitalPeriod, rotationalPeriod, surfaceTemperature, hasAtmosphere, isTidallyLocked, hasWater, color);
+        Moon moon = new Moon(id, moonName, diameter, mass, gravity, orbitalPeriod, rotationalPeriod, surfaceTemperature, hasAtmosphere, isTidallyLocked, hasWater, color);
 
         return moon;
     }
 
     // Generates a random single lifeform
     public Lifeform generateLifeform() {
+        return generateLifeform(false);
+    }
 
+    public Lifeform generateLifeform(boolean forPersistence) {
+
+        Long id = forPersistence ? null : random.nextLong(100000000);
         String[] kardashevScales = {"Type I", "Type II", "Type III"};
-        String[] habitats = {"terrestrial", "aquatic", "aerial", "subterranean", "amphibious"};
-        String[] diets = {"herbivore", "carnivore", "omnivore", "phototroph", "chemosynthetic"};
-        String[] reproductionMethods = {"sexual", "asexual", "budding", "spore-based", "binary fission"};
+        String[] habitats = {"Terrestrial", "Aquatic", "Aerial", "Subterranean", "Amphibious"};
+        String[] diets = {"Herbivore", "Carnivore", "Omnivore", "Phototroph", "Chemosynthetic"};
+        String[] reproductionMethods = {"Sexual", "Asexual", "Budding", "Spore-based", "Binary Fission"};
 
         String name = RandomNameGenerator.generateLifeformName();
         int lifespan = 1 + random.nextInt(100); // in years
@@ -201,7 +231,7 @@ public class UniverseService {
 
         String reproductionMethod = reproductionMethods[random.nextInt(reproductionMethods.length)];
 
-        Lifeform lifeform = new Lifeform(name, lifespan, intelligent, averageHeight, averageWeight, kardashevScale, habitat, diet, reproductionMethod);
+        Lifeform lifeform = new Lifeform(id, name, lifespan, intelligent, averageHeight, averageWeight, kardashevScale, habitat, diet, reproductionMethod);
 
         return lifeform;
     }

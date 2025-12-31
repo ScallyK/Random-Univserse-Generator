@@ -199,6 +199,13 @@ Secrets required (examples):
 ## License & Credits
 
 "Galaxy" model (https://skfb.ly/6xEsD) by 991519166 — licensed under Creative Commons Attribution 4.0.
+Planet models by Feivelyn from (https://sketchfab.com/3d-models/various-planets-73c6c24e7c40409cafc6adacd5d71ff5)
+Sun model by SebastianSosnowski from (https://sketchfab.com/3d-models/sun-9ef1c68fbb944147bcfcc891d3912645)
+Moon by SebastianSosnowski from (https://sketchfab.com/3d-models/ganymede-moon-7021e376ecb04b89b11fcbe017e48e8c)
+Ringed gas giant by berzerkey from (https://sketchfab.com/3d-models/ringed-gas-giant-planet-b4e21775e84e4cf3890f7796cfab1aca)
+Ice Planet by imperioame  from (https://sketchfab.com/3d-models/ice-planet-with-procedural-textures-68965317ff6f4338a79f6d373e2ae9fe)
+Lava planet by FPSunreal from (https://sketchfab.com/3d-models/lava-planet-9792612f76184ee3b48530c7515ce747)
+Favicon emoji graphic is from the open source project Twemoji. The graphics are copyright 2020 Twitter, Inc and other contributors. 
 
 ## Contact
 
